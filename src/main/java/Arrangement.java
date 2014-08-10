@@ -1,5 +1,5 @@
 
-public class Arrangement {
+public final class Arrangement {
     private static final int MAX_ROW_INDEX = 3;
 
     private static final int TOP_FACE = 0;
@@ -32,36 +32,6 @@ public class Arrangement {
             result = result.withAdditionOf(piece);
         }
         return result;
-    }
-
-    public int score() {
-        int score = 0;
-        for (int row = 0; row < MAX_ROW_INDEX; row++) {
-            if (pieceCount > row * MAX_ROW_INDEX + 1 && canFitHorizontally(0 + row * MAX_ROW_INDEX)) {
-                score += 1;
-            }
-            if (pieceCount > row * MAX_ROW_INDEX + 2 && canFitHorizontally(1 + row * MAX_ROW_INDEX)) {
-                score += 1;
-            }
-        }
-        for (int piece = 0; piece < MAX_ROW_INDEX * 2; piece++) {
-            if (pieceCount > piece + MAX_ROW_INDEX && canFitVertically(piece)) {
-                score += 1;
-            }
-        }
-        return score;
-    }
-
-    private boolean canFitHorizontally(int left) {
-        return canFit(left, left + 1, RIGHT_FACE, LEFT_FACE);
-    }
-
-    private boolean canFitVertically(int top) {
-        return canFit(top, top + MAX_ROW_INDEX, BOTTOM_FACE, TOP_FACE);
-    }
-
-    private boolean canFit(int piece1Idx, int piece2Idx, int face1, int face2) {
-        return (pieceAt(piece1Idx).face(face1) == pieceAt(piece2Idx).face(face2));
     }
 
     private HasFaces pieceAt(int index) {
