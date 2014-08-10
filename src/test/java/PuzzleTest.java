@@ -13,25 +13,25 @@ public class PuzzleTest {
 
     @Test public void
     twoMatchedPiecesScoreOne() {
-        Arrangement a = new Arrangement(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0)});
+        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0)});
         Assert.assertEquals(1, a.score());
     }
 
     @Test public void
     twoUnmatchedPiecesScoreTwo() {
-        Arrangement a = new Arrangement(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece1, 0)});
+        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece1, 0)});
         Assert.assertEquals(0, a.score());
     }
 
     @Test public void
     threeMatchedPiecesScoreTwo() {
-        Arrangement a = new Arrangement(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0), new RotatedPiece(piece3, 0)});
+        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0), new RotatedPiece(piece3, 0)});
         Assert.assertEquals(2, a.score());
     }
 
     @Test public void
     fourMatchedPiecesScoreThree() {
-        Arrangement a = new Arrangement(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0), new RotatedPiece(piece3, 0), new RotatedPiece(piece4, 0)});
+        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0), new RotatedPiece(piece3, 0), new RotatedPiece(piece4, 0)});
         Assert.assertEquals(3, a.score());
     }
 
@@ -40,7 +40,7 @@ public class PuzzleTest {
         RotatedPiece[] arrangement = new RotatedPiece[9];
         Arrays.fill(arrangement, new RotatedPiece(awesomePiece, 0));
 
-        Arrangement a = new Arrangement(arrangement);
+        Arrangement a = Arrangement.arrangementOf(arrangement);
         Assert.assertEquals(12, a.score());
     }
 
@@ -55,11 +55,12 @@ public class PuzzleTest {
 
     @Test public void
     arrangementsCanSpawnNewArrangementsByPieceAddition() {
-        final RotatedPiece pieceAdded = new RotatedPiece(piece1, 0);
-        final Arrangement original = new Arrangement();
+        final RotatedPiece originalPiece = new RotatedPiece(piece1, 0);
+        final Arrangement original = Arrangement.arrangementOf(new RotatedPiece[]{originalPiece});
+        final RotatedPiece pieceAdded = new RotatedPiece(piece2, 0);
         final Arrangement spawn = original.withAdditionOf(pieceAdded);
         
-        Assert.assertArrayEquals(new RotatedPiece[0], original.getPieces());
-        Assert.assertArrayEquals(new RotatedPiece[] {pieceAdded}, spawn.getPieces());
+        Assert.assertArrayEquals(new RotatedPiece[] {originalPiece}, original.getPieces());
+        Assert.assertArrayEquals(new RotatedPiece[] {originalPiece, pieceAdded}, spawn.getPieces());
     }
 }
