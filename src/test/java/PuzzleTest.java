@@ -63,4 +63,10 @@ public class PuzzleTest {
         Assert.assertArrayEquals(new RotatedPiece[] {originalPiece}, original.getPieces());
         Assert.assertArrayEquals(new RotatedPiece[] {originalPiece, pieceAdded}, spawn.getPieces());
     }
+
+    @Test public void
+    verifiesAPieceCanBeAddedToAnEmptyArrangement() {
+        Arrangement a = new Arrangement();
+        Assert.assertTrue(a.canAdd(new RotatedPiece(piece1, 0)));
+    }
 }

@@ -73,4 +73,8 @@ public class Arrangement {
         return new Arrangement(this, pieceAdded);
     }
 
+    public boolean canAdd(RotatedPiece piece) {
+        return true;
+    }
+
 }
