@@ -22,8 +22,4 @@ public final class PiecePool {
         }
         return new PiecePool(result);
     }
-
-    public boolean isEmpty() {
-        return pieces.length == 0;
-    }
 }

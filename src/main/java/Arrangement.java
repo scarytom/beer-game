@@ -1,6 +1,7 @@
 
 public final class Arrangement {
     private static final int MAX_ROW_INDEX = 3;
+    private static final int MAX_COL_INDEX = 3;
 
     private static final int TOP_FACE = 0;
     private static final int RIGHT_FACE = 1;
@@ -77,5 +78,9 @@ public final class Arrangement {
             }
         }
         return result.toString();
+    }
+
+    public boolean isComplete() {
+        return pieceCount == MAX_ROW_INDEX * MAX_COL_INDEX;
     }
 }

@@ -18,7 +18,7 @@ public class Solver {
     }
 
     private static Arrangement solve(Arrangement arrangement, PiecePool availablePieces) {
-        if (availablePieces.isEmpty()) {
+        if (arrangement.isComplete()) {
             System.out.println(arrangement);
             return arrangement;
         }
