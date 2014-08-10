@@ -40,4 +40,12 @@ public class Arrangement {
         return (arrangement[piece1Idx].face(face1) == arrangement[piece2Idx].face(face2));
     }
 
+    public RotatedPiece[] getPieces() {
+        return arrangement;
+    }
+
+    public Arrangement withAdditionOf(RotatedPiece pieceAdded) {
+        return new Arrangement(new RotatedPiece[] {pieceAdded});
+    }
+
 }

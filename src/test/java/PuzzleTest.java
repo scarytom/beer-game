@@ -53,4 +53,13 @@ public class PuzzleTest {
         Assert.assertEquals(FaceDesign.BarTender, rotatedPiece.face(3));
     }
 
+    @Test public void
+    arrangementsCanSpawnNewArrangementsByPieceAddition() {
+        final RotatedPiece pieceAdded = new RotatedPiece(piece1, 0);
+        final Arrangement original = new Arrangement();
+        final Arrangement spawn = original.withAdditionOf(pieceAdded);
+        
+        Assert.assertArrayEquals(new RotatedPiece[0], original.getPieces());
+        Assert.assertArrayEquals(new RotatedPiece[] {pieceAdded}, spawn.getPieces());
+    }
 }
