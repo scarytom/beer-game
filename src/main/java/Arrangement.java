@@ -2,6 +2,10 @@
 public class Arrangement {
     private final RotatedPiece[] arrangement;
 
+    public Arrangement() {
+        this(new RotatedPiece[0]);
+    }
+
     public Arrangement(RotatedPiece[] arrangement) {
         this.arrangement = arrangement;
     }
