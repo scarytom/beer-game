@@ -1,14 +1,16 @@
 
 public class RotatedPiece {
-    private Type[] faces = new Type[4];
+    private final Type[] unrotatedFaces;
+    private final int rotation;
+    private final int faceCount;
 
     public RotatedPiece(Piece piece, int rotation) {
-        System.arraycopy(piece.types(), rotation, faces, 0, piece.types().length - rotation);
-        System.arraycopy(piece.types(), 0, faces, piece.types().length - rotation, rotation);
-        System.arraycopy(faces, 0, piece.types(), 0, piece.types().length);
+        this.unrotatedFaces = piece.types();
+        this.rotation = rotation;
+        this.faceCount = piece.types().length;
     }
 
     public Type face(int face) {
-        return faces[face];
+        return unrotatedFaces[(face + rotation) % faceCount];
     }
 }
