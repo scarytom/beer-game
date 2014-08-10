@@ -1,8 +1,15 @@
 
 public class Arrangement {
+    private static final int MAX_ROW_INDEX = 3;
+
+    private static final int TOP_FACE = 0;
+    private static final int RIGHT_FACE = 1;
+    private static final int BOTTOM_FACE = 2;
+    private static final int LEFT_FACE = 3;
+
     private final HasFaces piece;
     private final Arrangement parent;
-    private final int length;
+    private final int pieceCount;
     private FaceDesign faceLeftOfNext;
     private FaceDesign faceAboveNext;
 
@@ -14,9 +21,9 @@ public class Arrangement {
         super();
         this.piece = piece;
         this.parent = parent;
-        this.length = (parent == null) ? 0 : (parent.length + 1);
-        this.faceLeftOfNext = (length % 3 != 0) ? piece.face(1) : null;
-        this.faceAboveNext = (length >= 3) ? pieceAt(length - 3).face(2) : null;
+        this.pieceCount = (parent == null) ? 0 : (parent.pieceCount + RIGHT_FACE);
+        this.faceLeftOfNext = (pieceCount % MAX_ROW_INDEX != 0) ? piece.face(RIGHT_FACE) : null;
+        this.faceAboveNext = (pieceCount >= MAX_ROW_INDEX) ? pieceAt(pieceCount - MAX_ROW_INDEX).face(BOTTOM_FACE) : null;
     }
 
     public static final Arrangement arrangementOf(HasFaces[] pieces) {
@@ -29,16 +36,16 @@ public class Arrangement {
 
     public int score() {
         int score = 0;
-        for (int row = 0; row < 3; row++) {
-            if (length() > row * 3 + 1 && canFitHorizontally(0 + row * 3)) {
+        for (int row = 0; row < MAX_ROW_INDEX; row++) {
+            if (pieceCount > row * MAX_ROW_INDEX + 1 && canFitHorizontally(0 + row * MAX_ROW_INDEX)) {
                 score += 1;
             }
-            if (length() > row * 3 + 2 && canFitHorizontally(1 + row * 3)) {
+            if (pieceCount > row * MAX_ROW_INDEX + 2 && canFitHorizontally(1 + row * MAX_ROW_INDEX)) {
                 score += 1;
             }
         }
-        for (int piece = 0; piece < 6; piece++) {
-            if (length() > piece + 3 && canFitVertically(piece)) {
+        for (int piece = 0; piece < MAX_ROW_INDEX * 2; piece++) {
+            if (pieceCount > piece + MAX_ROW_INDEX && canFitVertically(piece)) {
                 score += 1;
             }
         }
@@ -46,28 +53,24 @@ public class Arrangement {
     }
 
     private boolean canFitHorizontally(int left) {
-        return canFit(left, left + 1, 1, 3);
+        return canFit(left, left + 1, RIGHT_FACE, LEFT_FACE);
     }
 
     private boolean canFitVertically(int top) {
-        return canFit(top, top + 3, 2, 0);
+        return canFit(top, top + MAX_ROW_INDEX, BOTTOM_FACE, TOP_FACE);
     }
 
     private boolean canFit(int piece1Idx, int piece2Idx, int face1, int face2) {
         return (pieceAt(piece1Idx).face(face1) == pieceAt(piece2Idx).face(face2));
     }
 
-    private int length() {
-        return length;
-    }
-
     private HasFaces pieceAt(int index) {
-        return (index == length - 1) ? piece : parent.pieceAt(index);
+        return (index == pieceCount - 1) ? piece : parent.pieceAt(index);
     }
 
     public HasFaces[] getPieces() {
-        HasFaces[] result = new HasFaces[length];
-        for(int i = 0; i < length; i++) {
+        HasFaces[] result = new HasFaces[pieceCount];
+        for(int i = 0; i < pieceCount; i++) {
             result[i] = pieceAt(i);
         }
         return result;
@@ -78,10 +81,10 @@ public class Arrangement {
     }
 
     public boolean canAdd(HasFaces candidate) {
-        if (faceLeftOfNext != null && faceLeftOfNext != candidate.face(3)) {
+        if (faceLeftOfNext != null && faceLeftOfNext != candidate.face(LEFT_FACE)) {
             return false;
         }
-        if (faceAboveNext != null && faceAboveNext != candidate.face(0)) {
+        if (faceAboveNext != null && faceAboveNext != candidate.face(TOP_FACE)) {
             return false;
         }
         return true;
@@ -93,12 +96,12 @@ public class Arrangement {
         HasFaces[] pieces = getPieces();
         for (int i = 0; i < pieces.length; i++) {
             result.append('[');
-            for (int j = 0; j < 4; j++) {
+            for (int j = 0; j <= 3; j++) {
                 result.append(pieces[i].face(j));
                 result.append(',');
             }
             result.setCharAt(result.length() - 1, ']');
-            if (i % 3 == 2) {
+            if (i % MAX_ROW_INDEX == (MAX_ROW_INDEX - 1)) {
                 result.append('\n');
             }
         }
