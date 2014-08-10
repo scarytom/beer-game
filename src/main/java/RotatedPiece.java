@@ -5,9 +5,9 @@ public class RotatedPiece {
     private final int faceCount;
 
     public RotatedPiece(Piece piece, int rotation) {
-        this.unrotatedFaces = piece.types();
+        this.unrotatedFaces = piece.faces();
         this.rotation = rotation;
-        this.faceCount = piece.types().length;
+        this.faceCount = piece.faces().length;
     }
 
     public Type face(int face) {

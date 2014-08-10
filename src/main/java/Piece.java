@@ -5,7 +5,7 @@ public class Piece {
         this.types = types;
     }
 
-    public Type[] types() {
+    public Type[] faces() {
         return this.types;
     }
 }
