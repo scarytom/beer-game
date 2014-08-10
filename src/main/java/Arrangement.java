@@ -77,10 +77,13 @@ public class Arrangement {
         if (length == 0) {
             return true;
         }
-        if (piece.face(1) == candidate.face(3)) {
-            return true;
+        if (length % 3 != 0 && piece.face(1) != candidate.face(3)) {
+            return false;
         }
-        return false;
+        if (length >= 3 && pieceAt(length - 3).face(2) != candidate.face(0)) {
+            return false;
+        }
+        return true;
     }
 
 }
