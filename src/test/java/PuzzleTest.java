@@ -46,8 +46,11 @@ public class PuzzleTest {
 
     @Test public void
     rotatingRockzYo() {
-        Assert.assertArrayEquals(new Type[] {Type.WineBottle, Type.Man, Type.Band, Type.BarTender},
-                                 new RotatedPiece(piece1, 1).faces());
+        RotatedPiece rotatedPiece = new RotatedPiece(piece1, 1);
+        Assert.assertEquals(Type.WineBottle, rotatedPiece.face(0));
+        Assert.assertEquals(Type.Man, rotatedPiece.face(1));
+        Assert.assertEquals(Type.Band, rotatedPiece.face(2));
+        Assert.assertEquals(Type.BarTender, rotatedPiece.face(3));
     }
 
 }

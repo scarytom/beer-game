@@ -1,4 +1,3 @@
-import java.util.Arrays;
 
 public class RotatedPiece {
     private Type[] faces = new Type[4];
@@ -9,13 +8,7 @@ public class RotatedPiece {
         System.arraycopy(faces, 0, piece.types(), 0, piece.types().length);
     }
 
-    public Type[] faces() {
-        return faces;
-    }
-
-    @Override
-    public String toString() {
-        return "\n\tPiece=" +
-                "" + Arrays.toString(faces);
+    public Type face(int face) {
+        return faces[face];
     }
 }
