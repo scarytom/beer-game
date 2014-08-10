@@ -3,6 +3,8 @@ public class Arrangement {
     private final RotatedPiece piece;
     private final Arrangement parent;
     private final int length;
+    private FaceDesign faceLeftOfNext;
+    private FaceDesign faceAboveNext;
 
     public Arrangement() {
         this(null, null);
@@ -13,6 +15,8 @@ public class Arrangement {
         this.piece = piece;
         this.parent = parent;
         this.length = (parent == null) ? 0 : (parent.length + 1);
+        this.faceLeftOfNext = (length % 3 != 0) ? piece.face(1) : null;
+        this.faceAboveNext = (length >= 3) ? pieceAt(length - 3).face(2) : null;
     }
 
     public static final Arrangement arrangementOf(RotatedPiece[] pieces) {
@@ -74,13 +78,10 @@ public class Arrangement {
     }
 
     public boolean canAdd(RotatedPiece candidate) {
-        if (length == 0) {
-            return true;
-        }
-        if (length % 3 != 0 && piece.face(1) != candidate.face(3)) {
+        if (faceLeftOfNext != null && faceLeftOfNext != candidate.face(3)) {
             return false;
         }
-        if (length >= 3 && pieceAt(length - 3).face(2) != candidate.face(0)) {
+        if (faceAboveNext != null && faceAboveNext != candidate.face(0)) {
             return false;
         }
         return true;
