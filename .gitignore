@@ -1,3 +1,6 @@
 .idea/
 beer-puzzle.iml
 target
+bin/
+.project
+.classpath
