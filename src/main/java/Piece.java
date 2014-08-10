@@ -11,6 +11,6 @@ public final class Piece implements HasFaces {
 
     @Override
     public FaceDesign face(int face) {
-        return faces[face];
+        return faces[face % faces.length];
     }
 }
