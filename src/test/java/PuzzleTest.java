@@ -69,4 +69,12 @@ public class PuzzleTest {
         Arrangement a = new Arrangement();
         Assert.assertTrue(a.canAdd(new RotatedPiece(piece1, 0)));
     }
+
+    @Test public void
+    verifiesASecondPieceCanOnlyBeAddedIfItMatchesTheFirst() {
+        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0)});
+
+        Assert.assertTrue(a.canAdd(new RotatedPiece(piece2, 0)));
+        Assert.assertFalse(a.canAdd(new RotatedPiece(piece3, 0)));
+    }
 }

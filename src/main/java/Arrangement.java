@@ -73,8 +73,14 @@ public class Arrangement {
         return new Arrangement(this, pieceAdded);
     }
 
-    public boolean canAdd(RotatedPiece piece) {
-        return true;
+    public boolean canAdd(RotatedPiece candidate) {
+        if (length == 0) {
+            return true;
+        }
+        if (piece.face(1) == candidate.face(3)) {
+            return true;
+        }
+        return false;
     }
 
 }
