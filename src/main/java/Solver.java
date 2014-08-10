@@ -22,11 +22,12 @@ public class Solver {
             System.out.println(arrangement);
             return arrangement;
         }
-        for (int i = 0; i < availablePieces.size(); i++) {
-            for (int rotation = 0; rotation <= 3; rotation++) {
-                final HasFaces candidate = new RotatedPiece(availablePieces.pieceAt(i), rotation);
+        for (int pieceNumber = 0; pieceNumber < availablePieces.size(); pieceNumber++) {
+            HasFaces piece = availablePieces.pieceAt(pieceNumber);
+            for (int rotation = 0; rotation < piece.faceCount(); rotation++) {
+                final HasFaces candidate = new RotatedPiece(piece, rotation);
                 if (arrangement.canAdd(candidate)) {
-                    solve(arrangement.withAdditionOf(candidate), availablePieces.without(i));
+                    solve(arrangement.withAdditionOf(candidate), availablePieces.without(pieceNumber));
                 }
             }
         }

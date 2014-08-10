@@ -66,8 +66,9 @@ public final class Arrangement {
         HasFaces[] pieces = getPieces();
         for (int i = 0; i < pieces.length; i++) {
             result.append('[');
-            for (int j = 0; j <= 3; j++) {
-                result.append(pieces[i].face(j));
+            HasFaces p = pieces[i];
+            for (int j = 0; j < p.faceCount(); j++) {
+                result.append(p.face(j));
                 result.append(',');
             }
             result.setCharAt(result.length() - 1, ']');

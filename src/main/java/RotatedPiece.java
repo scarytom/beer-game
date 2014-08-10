@@ -8,7 +8,13 @@ public final class RotatedPiece implements HasFaces {
         this.rotation = rotation;
     }
 
+    @Override
     public FaceDesign face(int face) {
         return piece.face(face + rotation);
+    }
+
+    @Override
+    public int faceCount() {
+        return piece.faceCount();
     }
 }

@@ -1,5 +1,6 @@
 public interface HasFaces {
 
-    public abstract FaceDesign face(int face);
+    FaceDesign face(int face);
+    int faceCount();
 
 }

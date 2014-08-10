@@ -13,4 +13,9 @@ public final class Piece implements HasFaces {
     public FaceDesign face(int face) {
         return faces[face % faces.length];
     }
+
+    @Override
+    public int faceCount() {
+        return faces.length;
+    }
 }
