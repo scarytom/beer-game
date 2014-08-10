@@ -1,11 +1,11 @@
 public class Piece {
-    private Type[] types = new Type[4];
+    private FaceDesign[] faces = new FaceDesign[4];
 
-    public Piece(Type[] types) {
-        this.types = types;
+    public Piece(FaceDesign[] faces) {
+        this.faces = faces;
     }
 
-    public Type[] faces() {
-        return this.types;
+    public FaceDesign[] faces() {
+        return this.faces;
     }
 }

@@ -1,6 +1,6 @@
 
 public class RotatedPiece {
-    private final Type[] unrotatedFaces;
+    private final FaceDesign[] unrotatedFaces;
     private final int rotation;
     private final int faceCount;
 
@@ -10,7 +10,7 @@ public class RotatedPiece {
         this.faceCount = piece.faces().length;
     }
 
-    public Type face(int face) {
+    public FaceDesign face(int face) {
         return unrotatedFaces[(face + rotation) % faceCount];
     }
 }

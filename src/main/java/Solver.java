@@ -9,14 +9,14 @@ if none found, remove last piece and attempt with next
 public class Solver {
 
     public static final Piece[] PIECES = new Piece[] {
-        new Piece(new Type[] {Type.Man, Type.WineBottle, Type.BarTender, Type.BeerGlass}),
-        new Piece(new Type[] {Type.BeerGlass, Type.BarTender, Type.Man, Type.IHeartBeer}),
-        new Piece(new Type[] {Type.BeerGlass, Type.Band, Type.IHeartBeer, Type.WineBottle}),
-        new Piece(new Type[] {Type.IHeartBeer, Type.BeerGlass, Type.Man, Type.Band}),
-        new Piece(new Type[] {Type.BarTender, Type.Band, Type.Man, Type.WineBottle}),
-        new Piece(new Type[] {Type.BeerGlass, Type.BarTender, Type.Man, Type.WineBottle}),
-        new Piece(new Type[] {Type.WineBottle, Type.BarTender, Type.IHeartBeer, Type.Band}),
-        new Piece(new Type[] {Type.BarTender, Type.IHeartBeer, Type.BeerGlass, Type.Band}),
-        new Piece(new Type[] {Type.Band, Type.Man, Type.WineBottle, Type.IHeartBeer})
+        new Piece(new FaceDesign[] {FaceDesign.Man, FaceDesign.WineBottle, FaceDesign.BarTender, FaceDesign.BeerGlass}),
+        new Piece(new FaceDesign[] {FaceDesign.BeerGlass, FaceDesign.BarTender, FaceDesign.Man, FaceDesign.IHeartBeer}),
+        new Piece(new FaceDesign[] {FaceDesign.BeerGlass, FaceDesign.Band, FaceDesign.IHeartBeer, FaceDesign.WineBottle}),
+        new Piece(new FaceDesign[] {FaceDesign.IHeartBeer, FaceDesign.BeerGlass, FaceDesign.Man, FaceDesign.Band}),
+        new Piece(new FaceDesign[] {FaceDesign.BarTender, FaceDesign.Band, FaceDesign.Man, FaceDesign.WineBottle}),
+        new Piece(new FaceDesign[] {FaceDesign.BeerGlass, FaceDesign.BarTender, FaceDesign.Man, FaceDesign.WineBottle}),
+        new Piece(new FaceDesign[] {FaceDesign.WineBottle, FaceDesign.BarTender, FaceDesign.IHeartBeer, FaceDesign.Band}),
+        new Piece(new FaceDesign[] {FaceDesign.BarTender, FaceDesign.IHeartBeer, FaceDesign.BeerGlass, FaceDesign.Band}),
+        new Piece(new FaceDesign[] {FaceDesign.Band, FaceDesign.Man, FaceDesign.WineBottle, FaceDesign.IHeartBeer})
     };
 }

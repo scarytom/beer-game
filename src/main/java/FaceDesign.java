@@ -1,4 +1,4 @@
-public enum Type {
+public enum FaceDesign {
     BarTender,
     BeerGlass,
     WineBottle,

@@ -30,9 +30,9 @@ public class Arrangement {
     }
 
     private int canFit(int piece1Idx, int piece2Idx, int face1, int face2) {
-        Type piece1Type = arrangement[piece1Idx].face(face1);
-        Type piece2Type = arrangement[piece2Idx].face(face2);
-        if (piece1Type == piece2Type) return 1;
+        FaceDesign face1Design = arrangement[piece1Idx].face(face1);
+        FaceDesign face2Design = arrangement[piece2Idx].face(face2);
+        if (face1Design == face2Design) return 1;
         else return 0;
     }
 

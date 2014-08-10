@@ -4,12 +4,12 @@ import org.junit.Test;
 import java.util.Arrays;
 
 public class PuzzleTest {
-    Piece piece1 = new Piece(new Type[] {Type.BarTender, Type.WineBottle, Type.Man, Type.Band});
-    Piece piece2 = new Piece(new Type[] {Type.BarTender, Type.Band, Type.Man, Type.WineBottle});
-    Piece piece3 = new Piece(new Type[] {Type.BarTender, Type.IHeartBeer, Type.Man, Type.Band});
-    Piece piece4 = new Piece(new Type[] {Type.Man, Type.IHeartBeer, Type.BarTender, Type.Band});
+    Piece piece1 = new Piece(new FaceDesign[] {FaceDesign.BarTender, FaceDesign.WineBottle, FaceDesign.Man, FaceDesign.Band});
+    Piece piece2 = new Piece(new FaceDesign[] {FaceDesign.BarTender, FaceDesign.Band, FaceDesign.Man, FaceDesign.WineBottle});
+    Piece piece3 = new Piece(new FaceDesign[] {FaceDesign.BarTender, FaceDesign.IHeartBeer, FaceDesign.Man, FaceDesign.Band});
+    Piece piece4 = new Piece(new FaceDesign[] {FaceDesign.Man, FaceDesign.IHeartBeer, FaceDesign.BarTender, FaceDesign.Band});
 
-    Piece awesomePiece = new Piece(new Type[] {Type.Man, Type.Man, Type.Man, Type.Man});
+    Piece awesomePiece = new Piece(new FaceDesign[] {FaceDesign.Man, FaceDesign.Man, FaceDesign.Man, FaceDesign.Man});
 
     @Test public void
     twoMatchedPiecesScoreOne() {
@@ -47,10 +47,10 @@ public class PuzzleTest {
     @Test public void
     rotatingRockzYo() {
         RotatedPiece rotatedPiece = new RotatedPiece(piece1, 1);
-        Assert.assertEquals(Type.WineBottle, rotatedPiece.face(0));
-        Assert.assertEquals(Type.Man, rotatedPiece.face(1));
-        Assert.assertEquals(Type.Band, rotatedPiece.face(2));
-        Assert.assertEquals(Type.BarTender, rotatedPiece.face(3));
+        Assert.assertEquals(FaceDesign.WineBottle, rotatedPiece.face(0));
+        Assert.assertEquals(FaceDesign.Man, rotatedPiece.face(1));
+        Assert.assertEquals(FaceDesign.Band, rotatedPiece.face(2));
+        Assert.assertEquals(FaceDesign.BarTender, rotatedPiece.face(3));
     }
 
 }
