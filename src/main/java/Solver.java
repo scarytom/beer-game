@@ -1,10 +1,3 @@
-/*
-start with all pieces in array in some arrangement
-work through all combinations of pieces and rotations
-
-pick a piece [0], pick next piece which matches the piece you've got.
-if none found, remove last piece and attempt with next
- */
 
 public class Solver {
 
@@ -19,4 +12,33 @@ public class Solver {
         new Piece(new FaceDesign[] {FaceDesign.BarTender, FaceDesign.IHeartBeer, FaceDesign.BeerGlass, FaceDesign.Band}),
         new Piece(new FaceDesign[] {FaceDesign.Band, FaceDesign.Man, FaceDesign.WineBottle, FaceDesign.IHeartBeer})
     };
+
+    public static void main(String[] args) {
+        solve(new Arrangement(), PIECES);
+    }
+
+    private static Arrangement solve(Arrangement arrangement, Piece[] availablePieces) {
+        if (availablePieces.length == 0) {
+            System.out.println(arrangement);
+            return arrangement;
+        }
+        for (int i = 0; i < availablePieces.length; i++) {
+            for (int rotation = 0; rotation <= 3; rotation++) {
+                final RotatedPiece candidate = new RotatedPiece(availablePieces[i], rotation);
+                if (arrangement.canAdd(candidate)) {
+                    solve(arrangement.withAdditionOf(candidate), piecesMinus(availablePieces, i));
+                }
+            }
+        }
+        return null;
+    }
+
+    private static Piece[] piecesMinus(Piece[] availablePieces, int index) {
+        Piece[] result = new Piece[availablePieces.length - 1];
+        System.arraycopy(availablePieces, 0, result, 0, index);
+        if (index != result.length) {
+            System.arraycopy(availablePieces, index + 1, result, index, result.length - index);
+        }
+        return result;
+    }
 }
