@@ -1,5 +1,5 @@
 
-public class RotatedPiece {
+public final class RotatedPiece implements HasFaces {
     private final FaceDesign[] unrotatedFaces;
     private final int rotation;
     private final int faceCount;

@@ -1,5 +1,5 @@
-public class Piece {
-    private FaceDesign[] faces = new FaceDesign[4];
+public final class Piece implements HasFaces {
+    private final FaceDesign[] faces;
 
     public Piece(FaceDesign[] faces) {
         this.faces = faces;
@@ -7,5 +7,10 @@ public class Piece {
 
     public FaceDesign[] faces() {
         return this.faces;
+    }
+
+    @Override
+    public FaceDesign face(int face) {
+        return faces[face];
     }
 }

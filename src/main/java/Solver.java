@@ -24,7 +24,7 @@ public class Solver {
         }
         for (int i = 0; i < availablePieces.length; i++) {
             for (int rotation = 0; rotation <= 3; rotation++) {
-                final RotatedPiece candidate = new RotatedPiece(availablePieces[i], rotation);
+                final HasFaces candidate = new RotatedPiece(availablePieces[i], rotation);
                 if (arrangement.canAdd(candidate)) {
                     solve(arrangement.withAdditionOf(candidate), piecesMinus(availablePieces, i));
                 }
@@ -33,7 +33,7 @@ public class Solver {
         return null;
     }
 
-    private static Piece[] piecesMinus(Piece[] availablePieces, int index) {
+    private static Piece[] piecesMinus(HasFaces[] availablePieces, int index) {
         Piece[] result = new Piece[availablePieces.length - 1];
         System.arraycopy(availablePieces, 0, result, 0, index);
         if (index != result.length) {

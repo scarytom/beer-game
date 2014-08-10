@@ -1,6 +1,6 @@
 
 public class Arrangement {
-    private final RotatedPiece piece;
+    private final HasFaces piece;
     private final Arrangement parent;
     private final int length;
     private FaceDesign faceLeftOfNext;
@@ -10,7 +10,7 @@ public class Arrangement {
         this(null, null);
     }
 
-    private Arrangement(Arrangement parent, RotatedPiece piece) {
+    private Arrangement(Arrangement parent, HasFaces piece) {
         super();
         this.piece = piece;
         this.parent = parent;
@@ -19,9 +19,9 @@ public class Arrangement {
         this.faceAboveNext = (length >= 3) ? pieceAt(length - 3).face(2) : null;
     }
 
-    public static final Arrangement arrangementOf(RotatedPiece[] pieces) {
+    public static final Arrangement arrangementOf(HasFaces[] pieces) {
         Arrangement result = new Arrangement();
-        for (RotatedPiece piece : pieces) {
+        for (HasFaces piece : pieces) {
             result = result.withAdditionOf(piece);
         }
         return result;
@@ -61,23 +61,23 @@ public class Arrangement {
         return length;
     }
 
-    private RotatedPiece pieceAt(int index) {
+    private HasFaces pieceAt(int index) {
         return (index == length - 1) ? piece : parent.pieceAt(index);
     }
 
-    public RotatedPiece[] getPieces() {
-        RotatedPiece[] result = new RotatedPiece[length];
+    public HasFaces[] getPieces() {
+        HasFaces[] result = new HasFaces[length];
         for(int i = 0; i < length; i++) {
             result[i] = pieceAt(i);
         }
         return result;
     }
 
-    public Arrangement withAdditionOf(RotatedPiece pieceAdded) {
+    public Arrangement withAdditionOf(HasFaces pieceAdded) {
         return new Arrangement(this, pieceAdded);
     }
 
-    public boolean canAdd(RotatedPiece candidate) {
+    public boolean canAdd(HasFaces candidate) {
         if (faceLeftOfNext != null && faceLeftOfNext != candidate.face(3)) {
             return false;
         }
@@ -90,7 +90,7 @@ public class Arrangement {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        RotatedPiece[] pieces = getPieces();
+        HasFaces[] pieces = getPieces();
         for (int i = 0; i < pieces.length; i++) {
             result.append('[');
             for (int j = 0; j < 4; j++) {

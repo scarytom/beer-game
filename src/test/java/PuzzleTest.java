@@ -13,25 +13,25 @@ public class PuzzleTest {
 
     @Test public void
     twoMatchedPiecesScoreOne() {
-        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0)});
+        Arrangement a = Arrangement.arrangementOf(new HasFaces[]{piece1, piece2});
         Assert.assertEquals(1, a.score());
     }
 
     @Test public void
     twoUnmatchedPiecesScoreTwo() {
-        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece1, 0)});
+        Arrangement a = Arrangement.arrangementOf(new HasFaces[]{piece1, piece1});
         Assert.assertEquals(0, a.score());
     }
 
     @Test public void
     threeMatchedPiecesScoreTwo() {
-        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0), new RotatedPiece(piece3, 0)});
+        Arrangement a = Arrangement.arrangementOf(new HasFaces[]{piece1, piece2, piece3});
         Assert.assertEquals(2, a.score());
     }
 
     @Test public void
     fourMatchedPiecesScoreThree() {
-        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0), new RotatedPiece(piece3, 0), new RotatedPiece(piece4, 0)});
+        Arrangement a = Arrangement.arrangementOf(new HasFaces[]{piece1, piece2, piece3, piece4});
         Assert.assertEquals(3, a.score());
     }
 
@@ -55,42 +55,42 @@ public class PuzzleTest {
 
     @Test public void
     arrangementsCanSpawnNewArrangementsByPieceAddition() {
-        final RotatedPiece originalPiece = new RotatedPiece(piece1, 0);
-        final Arrangement original = Arrangement.arrangementOf(new RotatedPiece[]{originalPiece});
-        final RotatedPiece pieceAdded = new RotatedPiece(piece2, 0);
+        final HasFaces originalPiece = piece1;
+        final Arrangement original = Arrangement.arrangementOf(new HasFaces[]{originalPiece});
+        final HasFaces pieceAdded = piece2;
         final Arrangement spawn = original.withAdditionOf(pieceAdded);
         
-        Assert.assertArrayEquals(new RotatedPiece[] {originalPiece}, original.getPieces());
-        Assert.assertArrayEquals(new RotatedPiece[] {originalPiece, pieceAdded}, spawn.getPieces());
+        Assert.assertArrayEquals(new HasFaces[] {originalPiece}, original.getPieces());
+        Assert.assertArrayEquals(new HasFaces[] {originalPiece, pieceAdded}, spawn.getPieces());
     }
 
     @Test public void
     verifiesAPieceCanBeAddedToAnEmptyArrangement() {
         Arrangement a = new Arrangement();
-        Assert.assertTrue(a.canAdd(new RotatedPiece(piece1, 0)));
+        Assert.assertTrue(a.canAdd(piece1));
     }
 
     @Test public void
     verifiesASecondPieceCanOnlyBeAddedIfItMatchesTheFirst() {
-        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0)});
+        Arrangement a = Arrangement.arrangementOf(new HasFaces[]{piece1});
 
-        Assert.assertTrue(a.canAdd(new RotatedPiece(piece2, 0)));
-        Assert.assertFalse(a.canAdd(new RotatedPiece(piece3, 0)));
+        Assert.assertTrue(a.canAdd(piece2));
+        Assert.assertFalse(a.canAdd(piece3));
     }
 
     @Test public void
     verifiesAThirdPieceCanOnlyBeAddedIfItMatchesTheSecond() {
-        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece4, 0), new RotatedPiece(piece1, 0)});
+        Arrangement a = Arrangement.arrangementOf(new HasFaces[]{piece4, piece1});
 
-        Assert.assertTrue(a.canAdd(new RotatedPiece(piece2, 0)));
-        Assert.assertFalse(a.canAdd(new RotatedPiece(piece3, 0)));
+        Assert.assertTrue(a.canAdd(piece2));
+        Assert.assertFalse(a.canAdd(piece3));
     }
 
     @Test public void
     verifiesAFourthPieceCanOnlyBeAddedIfItMatchesTheFirstPieceAbove() {
-        Arrangement a = Arrangement.arrangementOf(new RotatedPiece[]{new RotatedPiece(piece1, 0), new RotatedPiece(piece2, 0), new RotatedPiece(piece3, 0)});
+        Arrangement a = Arrangement.arrangementOf(new HasFaces[]{piece1, piece2, piece3});
 
-        Assert.assertTrue(a.canAdd(new RotatedPiece(piece4, 0)));
+        Assert.assertTrue(a.canAdd(piece4));
         Assert.assertFalse(a.canAdd(new RotatedPiece(piece4, 1)));
     }
 }
