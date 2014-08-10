@@ -87,4 +87,21 @@ public class Arrangement {
         return true;
     }
 
+    @Override
+    public String toString() {
+        StringBuilder result = new StringBuilder();
+        RotatedPiece[] pieces = getPieces();
+        for (int i = 0; i < pieces.length; i++) {
+            result.append('[');
+            for (int j = 0; j < 4; j++) {
+                result.append(pieces[i].face(j));
+                result.append(',');
+            }
+            result.setCharAt(result.length() - 1, ']');
+            if (i % 3 == 2) {
+                result.append('\n');
+            }
+        }
+        return result.toString();
+    }
 }
